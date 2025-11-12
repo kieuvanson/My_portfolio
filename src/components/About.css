@@ -343,11 +343,39 @@
   .section-title {
     font-size: 2rem;
   }
+
+  .editor-controls {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .run-button, .reset-button, .back-button {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-size: 0.9rem;
+  }
 }
 
 @media (max-width: 568px) {
   .about {
     padding: 4rem 1rem;
+  }
+
+  .section-title {
+    font-size: 1.8rem;
+  }
+
+  .section-number {
+    font-size: 0.9rem;
+  }
+
+  .code-editor-container {
+    margin-top: 2rem;
+  }
+
+  .code-editor-window {
+    width: 100%;
+    max-width: 100%;
   }
 
   .editor-header {
@@ -362,6 +390,15 @@
 
   .editor-controls {
     justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .run-button, .reset-button, .back-button {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.8rem;
+    flex: 1;
+    min-width: 120px;
   }
 
   .code-header, .output-header {
@@ -370,13 +407,30 @@
 
   .code-content, .output-content {
     padding: 0.75rem;
+    max-height: 45vh;
   }
 
   .code-text {
-    font-size: 0.8rem;
+    font-size: 0.75rem;
+    line-height: 1.4;
+  }
+
+  .line-number {
+    width: 1.5rem;
+    font-size: 0.7rem;
   }
 
   .output-text {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
+    line-height: 1.5;
+  }
+
+  .language-badge {
+    font-size: 0.7rem;
+    padding: 0.2rem 0.4rem;
+  }
+
+  .line-count {
+    font-size: 0.75rem;
   }
 }

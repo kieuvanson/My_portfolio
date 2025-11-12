@@ -45,7 +45,7 @@ function App() {
               <div className="loading-bar">
                 <div className="loading-progress"></div>
               </div>
-              <p className="loading-text">Đang tải...</p>
+              <p className="loading-text">Loading...</p>
             </div>
           </div>
           <div className="door-right">
@@ -61,7 +61,7 @@ function App() {
               <div className="loading-bar">
                 <div className="loading-progress"></div>
               </div>
-              <p className="loading-text">Đang tải...</p>
+              <p className="loading-text">Loading...</p>
             </div>
           </div>
         </div>

@@ -10,25 +10,25 @@ const About = () => {
   const [attentionAnimation, setAttentionAnimation] = useState(true);
 
   const codeSnippet = `// Portfolio Introduction Script
-// Author: Kiều Vân Sơn
+// Author: Kieu Van Son
 // Language: JavaScript (Node.js)
 
 const portfolio = {
-  name: "Kiều Vân Sơn",
+  name: "Kieu Van Son",
   role: "Backend Developer",
-  location: "Hà Nội, Việt Nam",
-  education: "CNTT - Học viện Phụ nữ Việt Nam",
+  location: "Hanoi, Vietnam",
+  education: "IT - Women's Academy Vietnam",
 
   introduce() {
-    console.log("🚀 Chào mừng đến với Portfolio của tôi!");
-    console.log(\`👋 Xin chào! Tôi là \${this.name}\`);
+    console.log("🚀 Welcome to my Portfolio!");
+    console.log(\`👋 Hello! I am \${this.name}\`);
     console.log(\`\${this.role} | \${this.location}\`);
     console.log("");
 
-    console.log("💡 Về tôi:");
-    console.log("Tôi là một Backend Developer đam mê việc tạo ra các API hiệu quả");
-    console.log("và xây dựng hệ thống backend vững chắc. Tôi thích khám phá công nghệ mới,");
-    console.log("tối ưu code, và luôn tìm cách giúp ứng dụng hoạt động mượt mà và an toàn hơn.");
+    console.log("💡 About me:");
+    console.log("I am a Backend Developer passionate about creating efficient APIs");
+    console.log("and building robust backend systems. I enjoy exploring new technologies,");
+    console.log("optimizing code, and always finding ways to make applications run smoothly and securely.");
     console.log("");
 
     this.showJourney();
@@ -36,21 +36,21 @@ const portfolio = {
     this.showPhilosophy();
     this.showGoals();
 
-    console.log("✨ Cảm ơn bạn đã ghé thăm portfolio của tôi!");
+    console.log("✨ Thank you for visiting my portfolio!");
   },
 
   showJourney() {
-    console.log("🛤️ Hành trình của tôi:");
-    console.log("  - Sinh viên năm 4 ngành CNTT tại Học viện Phụ nữ Việt Nam");
-    console.log("  - Bắt đầu với lập trình từ năm 2020");
-    console.log("  - Chuyên sâu vào Backend Development từ 2022");
-    console.log("  - Tham gia các dự án thực tế và hackathon");
-    console.log("  - Luôn học hỏi và cập nhật kiến thức mới mỗi ngày");
+    console.log("🛤️ My Journey:");
+    console.log("  - 4th year IT student at Women's Academy Vietnam");
+    console.log("  - Started programming in 2020");
+    console.log("  - Specialized in Backend Development since 2022");
+    console.log("  - Participated in real projects and hackathons");
+    console.log("  - Always learning and updating knowledge every day");
     console.log("");
   },
 
   showSkills() {
-    console.log("🛠️ Kỹ năng kỹ thuật:");
+    console.log("🛠️ Technical Skills:");
     console.log("  - Backend: Node.js, Express.js, Python, Django, FastAPI");
     console.log("  - Database: MySQL, PostgreSQL, MongoDB, Redis");
     console.log("  - API: RESTful APIs, GraphQL, API Security, Authentication");
@@ -60,22 +60,22 @@ const portfolio = {
   },
 
   showPhilosophy() {
-    console.log("🎯 Triết lý làm việc:");
-    console.log("  - 'Code không chỉ để chạy, mà phải dễ bảo trì và mở rộng'");
-    console.log("  - Luôn ưu tiên trải nghiệm người dùng cuối");
-    console.log("  - Bảo mật là ưu tiên hàng đầu trong mọi dự án");
-    console.log("  - Học hỏi từ mỗi lỗi và cải thiện liên tục");
-    console.log("  - Teamwork và communication là chìa khóa thành công");
+    console.log("🎯 Work Philosophy:");
+    console.log("  - 'Code should not only run, but be maintainable and scalable'");
+    console.log("  - Always prioritize end-user experience");
+    console.log("  - Security is the top priority in every project");
+    console.log("  - Learn from every mistake and improve continuously");
+    console.log("  - Teamwork and communication are keys to success");
     console.log("");
   },
 
   showGoals() {
-    console.log("🎯 Mục tiêu tương lai:");
-    console.log("  - Trở thành Senior Backend Developer trong 2-3 năm tới");
-    console.log("  - Đóng góp vào cộng đồng open source");
-    console.log("  - Xây dựng sản phẩm công nghệ có tác động tích cực");
-    console.log("  - Chia sẻ kiến thức và mentor cho developer mới");
-    console.log("  - Luôn cập nhật với xu hướng công nghệ mới nhất");
+    console.log("🎯 Future Goals:");
+    console.log("  - Become a Senior Backend Developer in 2-3 years");
+    console.log("  - Contribute to the open source community");
+    console.log("  - Build technology products with positive impact");
+    console.log("  - Share knowledge and mentor new developers");
+    console.log("  - Always stay updated with the latest technology trends");
     console.log("");
   }
 };
@@ -88,44 +88,44 @@ portfolio.introduce();`;
     setAttentionAnimation(false);
     setOutput('');
 
-    const fullText = `🚀 Chào mừng đến với Portfolio của tôi!
-👋 Xin chào! Tôi là Kiều Vân Sơn
-Backend Developer | Hà Nội, Việt Nam
+    const fullText = `🚀 Welcome to my Portfolio!
+👋 Hello! I am Kieu Van Son
+Backend Developer | Hanoi, Vietnam
 
-💡 Về tôi:
-Tôi là một Backend Developer đam mê việc tạo ra các API hiệu quả
-và xây dựng hệ thống backend vững chắc. Tôi thích khám phá công nghệ mới,
-tối ưu code, và luôn tìm cách giúp ứng dụng hoạt động mượt mà và an toàn hơn.
+💡 About me:
+I am a Backend Developer passionate about creating efficient APIs
+and building robust backend systems. I enjoy exploring new technologies,
+optimizing code, and always finding ways to make applications run smoothly and securely.
 
-🛤️ Hành trình của tôi:
-  - Sinh viên năm 4 ngành CNTT tại Học viện Phụ nữ Việt Nam
-  - Bắt đầu với lập trình từ năm 2020
-  - Chuyên sâu vào Backend Development từ 2022
-  - Tham gia các dự án thực tế và hackathon
-  - Luôn học hỏi và cập nhật kiến thức mới mỗi ngày
+🛤️ My Journey:
+  - 4th year IT student at Women's Academy Vietnam
+  - Started programming in 2020
+  - Specialized in Backend Development since 2022
+  - Participated in real projects and hackathons
+  - Always learning and updating knowledge every day
 
-🛠️ Kỹ năng kỹ thuật:
+🛠️ Technical Skills:
   - Backend: Node.js, Express.js, Python, Django, FastAPI
   - Database: MySQL, PostgreSQL, MongoDB, Redis
   - API: RESTful APIs, GraphQL, API Security, Authentication
   - Tools: Git, Docker, AWS, Linux, Postman
   - Languages: JavaScript, Python, SQL, Bash
 
-🎯 Triết lý làm việc:
-  - 'Code không chỉ để chạy, mà phải dễ bảo trì và mở rộng'
-  - Luôn ưu tiên trải nghiệm người dùng cuối
-  - Bảo mật là ưu tiên hàng đầu trong mọi dự án
-  - Học hỏi từ mỗi lỗi và cải thiện liên tục
-  - Teamwork và communication là chìa khóa thành công
+🎯 Work Philosophy:
+  - 'Code should not only run, but be maintainable and scalable'
+  - Always prioritize end-user experience
+  - Security is the top priority in every project
+  - Learn from every mistake and improve continuously
+  - Teamwork and communication are keys to success
 
-🎯 Mục tiêu tương lai:
-  - Trở thành Senior Backend Developer trong 2-3 năm tới
-  - Đóng góp vào cộng đồng open source
-  - Xây dựng sản phẩm công nghệ có tác động tích cực
-  - Chia sẻ kiến thức và mentor cho developer mới
-  - Luôn cập nhật với xu hướng công nghệ mới nhất
+🎯 Future Goals:
+  - Become a Senior Backend Developer in 2-3 years
+  - Contribute to the open source community
+  - Build technology products with positive impact
+  - Share knowledge and mentor new developers
+  - Always stay updated with the latest technology trends
 
-✨ Cảm ơn bạn đã ghé thăm portfolio của tôi!`;
+✨ Thank you for visiting my portfolio!`;
 
     let currentIndex = 0;
     const interval = setInterval(() => {
@@ -173,7 +173,7 @@ tối ưu code, và luôn tìm cách giúp ứng dụng hoạt động mượt m
       <div className="container">
         <div className="section-header" data-reveal data-delay="0ms">
           <span className="section-number">01</span>
-          <h2 className="section-title">Về tôi</h2>
+          <h2 className="section-title">About Me</h2>
         </div>
         <div className="code-editor-container" data-reveal data-delay="100ms">
           <div className="code-editor-window">
@@ -191,11 +191,11 @@ tối ưu code, và luôn tìm cách giúp ứng dụng hoạt động mượt m
                     onClick={runScript}
                     disabled={isRunning}
                   >
-                    {isRunning ? '⏳ Đang chạy...' : '▶️ Chạy Script'}
+                    {isRunning ? '⏳ Running...' : '▶️ Run Script'}
                   </button>
                 ) : (
                   <button className="back-button" onClick={backToCode}>
-                    🔙 Quay lại Code
+                    🔙 Back to Code
                   </button>
                 )}
                 <button className="reset-button" onClick={resetTerminal}>
@@ -224,8 +224,8 @@ tối ưu code, và luôn tìm cách giúp ứng dụng hoạt động mượt m
               ) : (
                 <div className="output-panel full">
                   <div className="output-header">
-                    <span className="output-title">Terminal Output</span>
-                    <span className="output-status">✅ Completed</span>
+                  <span className="output-title">Terminal Output</span>
+                  <span className="output-status">✅ Completed</span>
                   </div>
                   <div className="output-content">
                     <pre className="output-text">{output}</pre>

@@ -6,9 +6,9 @@ const Skills = () => {
   const containerRef = useReveal();
   const skillCategories = [
     {
-      title: 'Ngôn ngữ lập trình',
+      title: 'Programming Languages',
       skills: [
-        { name: 'JavaScript', icon: '🟨', description: 'Ngôn ngữ chính cho web development' },
+        { name: 'JavaScript', icon: '🟨', description: 'Primary language for web development' },
         { name: 'Java', icon: '☕', description: 'Object-oriented programming language' },
         { name: 'C++', icon: '⚙️', description: 'Systems programming language' },
         { name: 'SQL', icon: '🗄️', description: 'Database querying' },
@@ -19,22 +19,36 @@ const Skills = () => {
       title: 'Backend Frameworks',
       skills: [
         { name: 'Node.js', icon: '🟢', description: 'JavaScript runtime' },
-        { name: 'Express.js', icon: '🚀', description: 'Web framework cho Node.js' },
+        { name: 'Express.js', icon: '🚀', description: 'Web framework for Node.js' },
         { name: 'Spring Boot', icon: '🌱', description: 'Java web framework' },
         { name: 'Qt', icon: '🔧', description: 'C++ GUI framework' },
       ]
     },
     {
-      title: 'Cơ sở dữ liệu',
+      title: 'Databases',
       skills: [
-        { name: 'PostgreSQL', icon: '🐘', description: 'Advanced relational database' },
-        { name: 'MySQL', icon: '🦭', description: 'Popular relational database' },
-        { name: 'MongoDB', icon: '🍃', description: 'NoSQL document database' },
-        { name: 'Redis', icon: '🔴', description: 'In-memory data structure store' },
+        {
+          name: 'Relational Databases',
+          icon: '🗄️',
+          description: 'ACID-compliant databases for structured data',
+          subSkills: [
+            { name: 'PostgreSQL', icon: '🐘', description: 'Advanced open-source RDBMS' },
+            { name: 'MySQL', icon: '🦭', description: 'Popular relational database' }
+          ]
+        },
+        {
+          name: 'NoSQL Databases',
+          icon: '📊',
+          description: 'Flexible databases for unstructured data',
+          subSkills: [
+            { name: 'MongoDB', icon: '🍃', description: 'Document-oriented NoSQL database' },
+            { name: 'Redis', icon: '🔴', description: 'In-memory key-value store' }
+          ]
+        }
       ]
     },
     {
-      title: 'Công cụ & DevOps',
+      title: 'Tools & DevOps',
       skills: [
         { name: 'Git', icon: '📚', description: 'Version control system' },
         { name: 'Docker', icon: '🐳', description: 'Containerization platform' },
@@ -50,10 +64,10 @@ const Skills = () => {
       <div className="container">
         <div className="section-header" data-reveal data-delay="0ms">
           <span className="section-number">02</span>
-          <h2 className="section-title">Túi kỹ năng</h2>
+          <h2 className="section-title">Skills Bag</h2>
         </div>
         <p className="section-description" data-reveal data-delay="100ms">
-          Những thành quả tôi đã tích góp được trong hành trình học tập và làm việc. Túi vẫn luôn mở để tiếp thu thêm nhiều kỹ năng mới.
+          The achievements I've accumulated in my learning and working journey. The bag is always open to acquire new skills.
         </p>
         <div className="skills-bag">
           <div className="bag-container">
@@ -67,12 +81,37 @@ const Skills = () => {
               <h3 className="category-title">{category.title}</h3>
               <div className="skills-list">
                 {category.skills.map((skill, skillIndex) => (
-                  <div key={skillIndex} className="skill-card" data-reveal data-delay={`${300 + skillIndex*80}ms`}>
-                    <div className="skill-icon">{skill.icon}</div>
-                    <div className="skill-info">
-                      <h4 className="skill-name">{skill.name}</h4>
-                      <p className="skill-description">{skill.description}</p>
-                    </div>
+                  <div key={skillIndex}>
+                    {skill.subSkills ? (
+                      <div className="skill-category-group" data-reveal data-delay={`${300 + skillIndex*80}ms`}>
+                        <div className="skill-card main-skill">
+                          <div className="skill-icon">{skill.icon}</div>
+                          <div className="skill-info">
+                            <h4 className="skill-name">{skill.name}</h4>
+                            <p className="skill-description">{skill.description}</p>
+                          </div>
+                        </div>
+                        <div className="sub-skills-list">
+                          {skill.subSkills.map((subSkill, subIndex) => (
+                            <div key={subIndex} className="skill-card sub-skill" data-reveal data-delay={`${350 + skillIndex*80 + subIndex*50}ms`}>
+                              <div className="skill-icon">{subSkill.icon}</div>
+                              <div className="skill-info">
+                                <h4 className="skill-name">{subSkill.name}</h4>
+                                <p className="skill-description">{subSkill.description}</p>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="skill-card" data-reveal data-delay={`${300 + skillIndex*80}ms`}>
+                        <div className="skill-icon">{skill.icon}</div>
+                        <div className="skill-info">
+                          <h4 className="skill-name">{skill.name}</h4>
+                          <p className="skill-description">{skill.description}</p>
+                        </div>
+                      </div>
+                    )}
                   </div>
                 ))}
               </div>

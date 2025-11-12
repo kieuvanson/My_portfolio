@@ -28,10 +28,10 @@ const Navbar = () => {
           <span className="logo-text">KVS</span>
         </div>
         <div className={`nav-menu ${menuOpen ? 'active' : ''}`}>
-          <a href="#about" onClick={(e) => { e.preventDefault(); scrollToSection('about'); }}>Về tôi</a>
-          <a href="#skills" onClick={(e) => { e.preventDefault(); scrollToSection('skills'); }}>Kỹ năng</a>
-          <a href="#projects" onClick={(e) => { e.preventDefault(); scrollToSection('projects'); }}>Dự án</a>
-          <a href="#contact" onClick={(e) => { e.preventDefault(); scrollToSection('contact'); }}>Liên hệ</a>
+          <a href="#about" onClick={(e) => { e.preventDefault(); scrollToSection('about'); }}>About</a>
+          <a href="#skills" onClick={(e) => { e.preventDefault(); scrollToSection('skills'); }}>Skills</a>
+          <a href="#projects" onClick={(e) => { e.preventDefault(); scrollToSection('projects'); }}>Projects</a>
+          <a href="#contact" onClick={(e) => { e.preventDefault(); scrollToSection('contact'); }}>Contact</a>
         </div>
         <div className="nav-toggle" onClick={() => setMenuOpen(!menuOpen)}>
           <span></span>

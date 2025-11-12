@@ -7,17 +7,17 @@ const Projects = () => {
   const projects = [
     {
       title: 'NuiTeaCT – Backend API',
-      description: 'Dự án backend hoàn chỉnh cho cửa hàng trà sữa NuiTeaCT. Phát triển toàn bộ hệ thống API quản lý: đăng nhập/đăng ký người dùng, quản lý sản phẩm, đơn hàng, lịch sử cập nhật. Thiết kế cơ sở dữ liệu PostgreSQL, bảo mật bằng JWT, triển khai RESTful API chuẩn.',
+      description: 'Complete backend project for NuiTeaCT bubble tea shop. Developed full API system for: user login/registration, product management, orders, update history. Designed PostgreSQL database, secured with JWT, implemented standard RESTful API.',
       tech: ['Node.js', 'Express.js', 'PostgreSQL', 'JWT', 'RESTful API'],
       category: 'E-Commerce Backend',
       highlights: [
-        'Tạo RESTful API chuẩn với khả năng mở rộng cao',
-        'Lưu lịch sử thay đổi sản phẩm tự động (auditing system)',
-        'Kiểm tra và bảo vệ API bằng middleware và JWT token',
-        'Thiết kế database schema tối ưu cho hiệu suất cao',
-        'Triển khai error handling và logging chi tiết'
+        'Created scalable RESTful API standards',
+        'Automatic product change history logging (auditing system)',
+        'API protection with middleware and JWT tokens',
+        'Optimized database schema design for high performance',
+        'Implemented detailed error handling and logging'
       ],
-      github: 'https://github.com/kieuvanson/NuiTeaCT-Backend'
+      github: 'https://github.com/kieuvanson/NuiTeaCT'
     }
   ];
 
@@ -26,11 +26,11 @@ const Projects = () => {
       <div className="container">
         <div className="section-header" data-reveal data-delay="0ms">
           <span className="section-number">03</span>
-          <h2 className="section-title">Dự án</h2>
+          <h2 className="section-title">Projects</h2>
         </div>
         <p className="section-description" data-reveal data-delay="100ms">
-          Dự án chính mà tôi đang tập trung phát triển - hệ thống backend hoàn chỉnh cho cửa hàng trà sữa NuiTeaCT.
-          Đây là dự án thực tế với đầy đủ tính năng thương mại điện tử.
+          The main project I'm focusing on developing - a complete backend system for NuiTeaCT bubble tea shop.
+          This is a real-world project with full e-commerce features.
         </p>
         <div className="projects-grid">
           {projects.map((project, index) => (
@@ -43,7 +43,7 @@ const Projects = () => {
               <p className="project-description">{project.description}</p>
               {project.highlights && (
                 <div className="project-highlights">
-                  <strong>Điểm nổi bật:</strong>
+                  <strong>Highlights:</strong>
                   <ul>
                     {project.highlights.map((highlight, hIndex) => (
                       <li key={hIndex}>{highlight}</li>
@@ -57,13 +57,13 @@ const Projects = () => {
                 ))}
               </div>
               <div className="project-footer">
-                <a 
-                  href={project.github || 'https://github.com/kieuvanson'} 
-                  target="_blank" 
+                <a
+                  href={project.github || 'https://github.com/kieuvanson'}
+                  target="_blank"
                   rel="noopener noreferrer"
                   className="project-link"
                 >
-                  Xem trên GitHub
+                  View on GitHub
                 </a>
               </div>
             </div>
