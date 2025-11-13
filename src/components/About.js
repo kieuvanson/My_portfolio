@@ -1,237 +1,148 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import './About.css';
 import useReveal from '../hooks/useReveal';
+import * as SimpleIcons from 'simple-icons';
+import { useLanguage } from '../context/LanguageContext';
 
 const About = () => {
   const containerRef = useReveal();
-  const [isRunning, setIsRunning] = useState(false);
-  const [output, setOutput] = useState('');
-  const [showCode, setShowCode] = useState(true);
-  const [attentionAnimation, setAttentionAnimation] = useState(true);
+  const { lang } = useLanguage();
 
-  const codeSnippet = `// Portfolio Introduction Script
-// Author: Kieu Van Son
-// Language: JavaScript (Node.js)
+  const t = lang === 'vi' ? {
+    title: 'Về tôi',
+    intro1: 'Tôi là một lập trình viên Web đam mê tạo ra trải nghiệm web đẹp, hữu dụng và thân thiện.',
+    intro2: 'Với kinh nghiệm cả frontend và backend, tôi hiện thực hóa ý tưởng bằng mã sạch, giao diện trực quan và hệ thống vững chắc. Tôi chuyên xây dựng ứng dụng web responsive vừa đẹp vừa hoạt động mượt trên mọi thiết bị.',
+    intro3: 'Tôi thích biến vấn đề phức tạp thành giải pháp đơn giản, tinh gọn. Từ UI mượt mà, API mở rộng tốt đến tối ưu hiệu năng, tôi luôn chú trọng chi tiết và chất lượng.',
+    contact: 'Liên hệ',
+    phone: 'Điện thoại',
+    email: 'Email',
+    github: 'GitHub',
+    facebook: 'Facebook'
+  } : {
+    title: 'About Me',
+    intro1: 'I am a Web Developer passionate about crafting beautiful, functional, and user-friendly web experiences.',
+    intro2: 'With expertise spanning both frontend and backend development, I bring ideas to life through clean code, intuitive interfaces, and robust systems. I specialize in building responsive web applications that not only look great but also perform flawlessly across all devices.',
+    intro3: "I love turning complex problems into simple, elegant solutions. Whether it's creating seamless user interfaces, designing scalable APIs, or optimizing performance, I approach every project with attention to detail and a commitment to excellence.",
+    contact: 'Contact',
+    phone: 'Phone',
+    email: 'Email',
+    github: 'GitHub',
+    facebook: 'Facebook'
+  };
 
-const portfolio = {
-  name: "Kieu Van Son",
-  role: "Backend Developer",
-  location: "Hanoi, Vietnam",
-  education: "IT - Women's Academy Vietnam",
-
-  introduce() {
-    console.log("🚀 Welcome to my Portfolio!");
-    console.log(\`👋 Hello! I am \${this.name}\`);
-    console.log(\`\${this.role} | \${this.location}\`);
-    console.log("");
-
-    console.log("💡 About me:");
-    console.log("I am a Backend Developer passionate about creating efficient APIs");
-    console.log("and building robust backend systems. I enjoy exploring new technologies,");
-    console.log("optimizing code, and always finding ways to make applications run smoothly and securely.");
-    console.log("");
-
-    this.showJourney();
-    this.showSkills();
-    this.showPhilosophy();
-    this.showGoals();
-
-    console.log("✨ Thank you for visiting my portfolio!");
-  },
-
-  showJourney() {
-    console.log("🛤️ My Journey:");
-    console.log("  - 4th year IT student at Women's Academy Vietnam");
-    console.log("  - Started programming in 2020");
-    console.log("  - Specialized in Backend Development since 2022");
-    console.log("  - Participated in real projects and hackathons");
-    console.log("  - Always learning and updating knowledge every day");
-    console.log("");
-  },
-
-  showSkills() {
-    console.log("🛠️ Technical Skills:");
-    console.log("  - Backend: Node.js, Express.js, Python, Django, FastAPI");
-    console.log("  - Database: MySQL, PostgreSQL, MongoDB, Redis");
-    console.log("  - API: RESTful APIs, GraphQL, API Security, Authentication");
-    console.log("  - Tools: Git, Docker, AWS, Linux, Postman");
-    console.log("  - Languages: JavaScript, Python, SQL, Bash");
-    console.log("");
-  },
-
-  showPhilosophy() {
-    console.log("🎯 Work Philosophy:");
-    console.log("  - 'Code should not only run, but be maintainable and scalable'");
-    console.log("  - Always prioritize end-user experience");
-    console.log("  - Security is the top priority in every project");
-    console.log("  - Learn from every mistake and improve continuously");
-    console.log("  - Teamwork and communication are keys to success");
-    console.log("");
-  },
-
-  showGoals() {
-    console.log("🎯 Future Goals:");
-    console.log("  - Become a Senior Backend Developer in 2-3 years");
-    console.log("  - Contribute to the open source community");
-    console.log("  - Build technology products with positive impact");
-    console.log("  - Share knowledge and mentor new developers");
-    console.log("  - Always stay updated with the latest technology trends");
-    console.log("");
-  }
-};
-
-// Execute the introduction
-portfolio.introduce();`;
-
-  const runScript = () => {
-    setIsRunning(true);
-    setAttentionAnimation(false);
-    setOutput('');
-
-    const fullText = `🚀 Welcome to my Portfolio!
-👋 Hello! I am Kieu Van Son
-Backend Developer | Hanoi, Vietnam
-
-💡 About me:
-I am a Backend Developer passionate about creating efficient APIs
-and building robust backend systems. I enjoy exploring new technologies,
-optimizing code, and always finding ways to make applications run smoothly and securely.
-
-🛤️ My Journey:
-  - 4th year IT student at Women's Academy Vietnam
-  - Started programming in 2020
-  - Specialized in Backend Development since 2022
-  - Participated in real projects and hackathons
-  - Always learning and updating knowledge every day
-
-🛠️ Technical Skills:
-  - Backend: Node.js, Express.js, Python, Django, FastAPI
-  - Database: MySQL, PostgreSQL, MongoDB, Redis
-  - API: RESTful APIs, GraphQL, API Security, Authentication
-  - Tools: Git, Docker, AWS, Linux, Postman
-  - Languages: JavaScript, Python, SQL, Bash
-
-🎯 Work Philosophy:
-  - 'Code should not only run, but be maintainable and scalable'
-  - Always prioritize end-user experience
-  - Security is the top priority in every project
-  - Learn from every mistake and improve continuously
-  - Teamwork and communication are keys to success
-
-🎯 Future Goals:
-  - Become a Senior Backend Developer in 2-3 years
-  - Contribute to the open source community
-  - Build technology products with positive impact
-  - Share knowledge and mentor new developers
-  - Always stay updated with the latest technology trends
-
-✨ Thank you for visiting my portfolio!`;
-
-    let currentIndex = 0;
-    const interval = setInterval(() => {
-      if (currentIndex < fullText.length) {
-        setOutput(prev => prev + fullText[currentIndex]);
-        currentIndex++;
-      } else {
-        clearInterval(interval);
-        setIsRunning(false);
-        setShowCode(false);
+  const getIcon = (iconKey) => {
+    try {
+      const key = iconKey.toLowerCase();
+      if (key === 'phone') {
+        // Custom minimal phone handset icon
+        return {
+          path: 'M6.62 10.79a15.05 15.05 0 006.59 6.59l1.98-1.98a1 1 0 011.02-.24c1.12.37 2.33.57 3.59.57a1 1 0 011 1v3.25a1 1 0 01-1 1C11.04 21.99 2 12.96 2 2.99a1 1 0 011-1H6.25a1 1 0 011 1c0 1.26.2 2.47.57 3.59a1 1 0 01-.24 1.02l-1.96 1.99z'
+        };
       }
-    }, 1); // 1ms delay between characters for very fast typing effect (0.5s total)
+
+      const iconName = `si${key.charAt(0).toUpperCase() + key.slice(1)}`;
+      const icon = SimpleIcons[iconName];
+
+      if (icon && icon.path) {
+        return {
+          path: icon.path
+        };
+      }
+    } catch (e) {
+      // If icon not found, return null
+    }
+    return null;
   };
 
-  const resetTerminal = () => {
-    setIsRunning(false);
-    setOutput('');
-    setShowCode(true);
-  };
-
-  const backToCode = () => {
-    setShowCode(true);
-    setAttentionAnimation(false);
-  };
-
-  useEffect(() => {
-    // Tắt animation chú ý sau 5 giây
-    const timer = setTimeout(() => {
-      setAttentionAnimation(false);
-    }, 5000);
-
-    return () => clearTimeout(timer);
-  }, []);
-
-  const getLineClass = (line) => {
-    if (line.startsWith('//')) return 'comment';
-    if (line.includes('const') || line.includes('function') || line.includes('console.log')) return 'keyword';
-    if (line.includes('"') || line.includes('`')) return 'string';
-    if (line.includes('this.') || line.includes('portfolio.')) return 'property';
-    return 'default';
-  };
+  const contactInfo = [
+    {
+      type: 'phone',
+      label: t.phone,
+      value: '0867 859 033',
+      iconKey: 'phone',
+      href: 'tel:+84867859033'
+    },
+    {
+      type: 'email',
+      label: t.email,
+      value: 'sonkieuvan@gmail.com',
+      iconKey: 'gmail',
+      href: 'mailto:sonkieuvan@gmail.com'
+    },
+    {
+      type: 'github',
+      label: t.github,
+      value: 'github.com/kieuvanson',
+      iconKey: 'github',
+      href: 'https://github.com/kieuvanson'
+    },
+    {
+      type: 'facebook',
+      label: t.facebook,
+      value: 'facebook.com/son.kieuvan.731',
+      iconKey: 'facebook',
+      href: 'https://www.facebook.com/son.kieuvan.731/'
+    }
+  ];
 
   return (
-    <section id="about" className="about reveal" ref={containerRef}>
+    <section id="about" className="about reveal section-divider" ref={containerRef}>
       <div className="container">
         <div className="section-header" data-reveal data-delay="0ms">
-          <span className="section-number">01</span>
-          <h2 className="section-title">About Me</h2>
+          <h2 className="section-title">{t.title}</h2>
         </div>
-        <div className="code-editor-container" data-reveal data-delay="100ms">
-          <div className="code-editor-window">
-            <div className="editor-header">
-              <div className="editor-tabs">
-                <div className="tab active">
-                  <span className="file-icon">🟨</span>
-                  portfolio.js
+
+        <div className="about-layout">
+          <div className="about-left" data-reveal data-delay="100ms">
+            <div className="about-intro">
+              <p className="intro-large">{t.intro1}</p>
+              <p className="intro-text">{t.intro2}</p>
+              <p className="intro-text">{t.intro3}</p>
                 </div>
               </div>
-              <div className="editor-controls">
-                {showCode ? (
-                  <button
-                    className={`run-button ${attentionAnimation ? 'attention' : ''}`}
-                    onClick={runScript}
-                    disabled={isRunning}
+
+          <div className="about-right" data-reveal data-delay="200ms">
+            <div className="contact-section">
+              <div className="section-label">{t.contact}</div>
+              <div className="contact-list">
+                {contactInfo.map((contact, index) => {
+                  const icon = getIcon(contact.iconKey);
+                  const iconColor = '#f5f5f5';
+
+                  return (
+                    <a
+                      key={index}
+                      href={contact.href}
+                      target={contact.type === 'email' || contact.type === 'phone' ? '_self' : '_blank'}
+                      rel={contact.type === 'email' || contact.type === 'phone' ? '' : 'noopener noreferrer'}
+                      className="contact-item"
+                      data-reveal
+                      data-delay={`${300 + index * 100}ms`}
+                      style={{ '--icon-color': iconColor }}
                   >
-                    {isRunning ? '⏳ Running...' : '▶️ Run Script'}
-                  </button>
+                      <div className="contact-icon">
+                        {icon ? (
+                          <svg
+                            className="contact-svg"
+                            role="img"
+                            viewBox="0 0 24 24"
+                            fill="currentColor"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path d={icon.path} />
+                          </svg>
                 ) : (
-                  <button className="back-button" onClick={backToCode}>
-                    🔙 Back to Code
-                  </button>
+                          <span className="contact-fallback">•</span>
                 )}
-                <button className="reset-button" onClick={resetTerminal}>
-                  🔄 Reset
-                </button>
+                      </div>
+                      <div className="contact-info">
+                        <span className="contact-label">{contact.label}</span>
+                        <span className="contact-value">{contact.value}</span>
+                      </div>
+                    </a>
+                  );
+                })}
               </div>
-            </div>
-            <div className="editor-body">
-              {showCode ? (
-                <div className="code-panel">
-                  <div className="code-header">
-                    <span className="language-badge">JavaScript</span>
-                    <span className="line-count">{codeSnippet.split('\n').length} lines</span>
-                  </div>
-                  <div className="code-content">
-                    <pre className="code-text">
-{codeSnippet.split('\n').map((line, index) => (
-  <div key={index} className="code-line">
-    <span className="line-number">{(index + 1).toString().padStart(2, ' ')}</span>
-    <span className={`line-content ${getLineClass(line)}`}>{line}</span>
-  </div>
-))}
-                    </pre>
-                  </div>
-                </div>
-              ) : (
-                <div className="output-panel full">
-                  <div className="output-header">
-                  <span className="output-title">Terminal Output</span>
-                  <span className="output-status">✅ Completed</span>
-                  </div>
-                  <div className="output-content">
-                    <pre className="output-text">{output}</pre>
-                  </div>
-                </div>
-              )}
             </div>
           </div>
         </div>
@@ -241,5 +152,4 @@ optimizing code, and always finding ways to make applications run smoothly and s
 };
 
 export default About;
-
 

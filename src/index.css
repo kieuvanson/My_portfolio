@@ -9,6 +9,37 @@ body {
   color: #ffffff;
 }
 
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+img, video, canvas, svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Light theme: global colors */
+[data-theme='light'] body {
+  background: #ffffff;
+  color: #111111;
+}
+
+/* Light theme: scrollbars */
+[data-theme='light'] ::-webkit-scrollbar-track {
+  background: #efefef;
+}
+[data-theme='light'] ::-webkit-scrollbar-thumb {
+  background: #cfcfcf;
+}
+[data-theme='light'] ::-webkit-scrollbar-thumb:hover {
+  background: #bdbdbd;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;

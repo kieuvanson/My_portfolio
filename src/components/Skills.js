@@ -1,120 +1,213 @@
 import React from 'react';
 import './Skills.css';
 import useReveal from '../hooks/useReveal';
+import * as SimpleIcons from 'simple-icons';
+import { useLanguage } from '../context/LanguageContext';
 
 const Skills = () => {
   const containerRef = useReveal();
+  const { lang } = useLanguage();
+  const t = lang === 'vi' ? {
+    title: 'Kỹ năng',
+    description: 'Công nghệ và công cụ mình sử dụng để xây dựng các ứng dụng web mạnh mẽ và có khả năng mở rộng.',
+    categories: {
+      languages: 'Ngôn ngữ lập trình',
+      frameworks: 'Frameworks & Thư viện',
+      tools: 'Công cụ'
+    }
+  } : {
+    title: 'Skills',
+    description: 'Technologies and tools I use to build robust and scalable web applications.',
+    categories: {
+      languages: 'Programming Languages',
+      frameworks: 'Frameworks & Libraries',
+      tools: 'Tools'
+    }
+  };
+  
+  const iconSlugMap = {
+    java: 'Java',
+    javascript: 'Javascript',
+    'c++': 'Cplusplus',
+    cplusplus: 'Cplusplus',
+    csharp: 'Csharp',
+    python: 'Python',
+    'node.js': 'Nodedotjs',
+    nodejs: 'Nodedotjs',
+    spring: 'Spring',
+    dotnet: 'Dotnet',
+    git: 'Git',
+    github: 'Github',
+    mysql: 'Mysql',
+    postgresql: 'Postgresql',
+    mongodb: 'Mongodb',
+    docker: 'Docker',
+    vercel: 'Vercel'
+  };
+
+  const colorOverrides = {
+    github: '#f5f5f5',
+    vercel: '#ffffff',
+    java: '#f4971c',
+    csharp: '#6f4bd8',
+    python: '#3776AB',
+    cplusplus: '#2f74c0',
+    postgresql: '#6da7d6',
+    mysql: '#f29111',
+    mongodb: '#4db33d',
+    docker: '#2395ec'
+  };
+
+  // 获取图标函数
+  const getIcon = (iconKey) => {
+    try {
+      const key = iconKey.toLowerCase();
+      const primary = iconSlugMap[key] || iconKey;
+      // Candidate priority: enforce correct brand for Java and C#
+      let candidates = [primary];
+      if (key === 'java') {
+        candidates = ['Java', 'Openjdk']; // try Java, fallback to OpenJDK
+      } else if (key === 'csharp') {
+        candidates = ['Csharp']; // avoid .NET logo
+      } else if (key === 'nodejs' || key === 'node.js') {
+        candidates.push('Nodedotjs');
+      }
+
+      let icon = null;
+      for (const cand of candidates) {
+        const pascal = cand.charAt(0).toUpperCase() + cand.slice(1);
+        const name = `si${pascal}`;
+        if (SimpleIcons[name]) {
+          icon = SimpleIcons[name];
+          break;
+        }
+      }
+
+      if (icon && icon.path) {
+        return {
+          path: icon.path,
+          color: colorOverrides[key] || `#${icon.hex}`
+        };
+      }
+    } catch (e) {
+      // 如果找不到图标，返回 null
+    }
+    return null;
+  };
+
   const skillCategories = [
     {
-      title: 'Programming Languages',
+      title: t.categories.languages,
       skills: [
-        { name: 'JavaScript', icon: '🟨', description: 'Primary language for web development' },
-        { name: 'Java', icon: '☕', description: 'Object-oriented programming language' },
-        { name: 'C++', icon: '⚙️', description: 'Systems programming language' },
-        { name: 'SQL', icon: '🗄️', description: 'Database querying' },
-        { name: 'Bash/Shell', icon: '💻', description: 'System scripting' },
+        { name: 'Java', iconKey: 'java' },
+        { name: 'JavaScript', iconKey: 'javascript' },
+        { name: 'C++', iconKey: 'c++' },
+        { name: 'Python', iconKey: 'python' },
       ]
     },
     {
-      title: 'Backend Frameworks',
+      title: t.categories.frameworks,
       skills: [
-        { name: 'Node.js', icon: '🟢', description: 'JavaScript runtime' },
-        { name: 'Express.js', icon: '🚀', description: 'Web framework for Node.js' },
-        { name: 'Spring Boot', icon: '🌱', description: 'Java web framework' },
-        { name: 'Qt', icon: '🔧', description: 'C++ GUI framework' },
+        { name: 'Node.js', iconKey: 'node.js' },
+        { name: 'Spring', iconKey: 'spring' },
+        { name: '.NET', iconKey: 'dotnet' },
       ]
     },
     {
-      title: 'Databases',
+      title: t.categories.tools,
       skills: [
-        {
-          name: 'Relational Databases',
-          icon: '🗄️',
-          description: 'ACID-compliant databases for structured data',
-          subSkills: [
-            { name: 'PostgreSQL', icon: '🐘', description: 'Advanced open-source RDBMS' },
-            { name: 'MySQL', icon: '🦭', description: 'Popular relational database' }
-          ]
-        },
-        {
-          name: 'NoSQL Databases',
-          icon: '📊',
-          description: 'Flexible databases for unstructured data',
-          subSkills: [
-            { name: 'MongoDB', icon: '🍃', description: 'Document-oriented NoSQL database' },
-            { name: 'Redis', icon: '🔴', description: 'In-memory key-value store' }
+        { name: 'Git', iconKey: 'git' },
+        { name: 'GitHub', iconKey: 'github' },
+        { name: 'MySQL', iconKey: 'mysql' },
+        { name: 'PostgreSQL', iconKey: 'postgresql' },
+        { name: 'MongoDB', iconKey: 'mongodb' },
+        { name: 'Docker', iconKey: 'docker' },
+        { name: 'Vercel', iconKey: 'vercel' },
           ]
         }
-      ]
-    },
-    {
-      title: 'Tools & DevOps',
-      skills: [
-        { name: 'Git', icon: '📚', description: 'Version control system' },
-        { name: 'Docker', icon: '🐳', description: 'Containerization platform' },
-        { name: 'AWS', icon: '☁️', description: 'Cloud computing platform' },
-        { name: 'Linux', icon: '🐧', description: 'Operating system' },
-        { name: 'Postman', icon: '📮', description: 'API testing tool' },
-      ]
-    }
   ];
 
+  // Các lựa chọn cho phần chữ lớn:
+  // Option 1: Tập trung vào kỹ năng
+  const roles = ['CODE', 'BUILD', 'DEPLOY'];
+  
+  // Option 2: Frontend/Backend/Fullstack
+  // const roles = ['FRONTEND', 'BACKEND', 'FULLSTACK'];
+  
+  // Option 3: Quy trình phát triển
+  // const roles = ['DESIGN', 'DEVELOP', 'DEPLOY'];
+  
+  // Option 4: Tập trung vào kỹ năng kỹ thuật
+  // const roles = ['BUILD', 'OPTIMIZE', 'SCALE'];
+
   return (
-    <section id="skills" className="skills reveal" ref={containerRef}>
+    <section id="skills" className="skills reveal section-divider" ref={containerRef}>
       <div className="container">
         <div className="section-header" data-reveal data-delay="0ms">
-          <span className="section-number">02</span>
-          <h2 className="section-title">Skills Bag</h2>
+          <h2 className="section-title">{t.title}</h2>
         </div>
-        <p className="section-description" data-reveal data-delay="100ms">
-          The achievements I've accumulated in my learning and working journey. The bag is always open to acquire new skills.
-        </p>
-        <div className="skills-bag">
-          <div className="bag-container">
-            <div className="bag-opening">
-              <div className="bag-flap"></div>
-            </div>
-            <div className="bag-body">
-              <div className="skills-grid">
-          {skillCategories.map((category, index) => (
-            <div key={index} className="skill-category" data-reveal data-delay={`${200 + index*100}ms`}>
-              <h3 className="category-title">{category.title}</h3>
-              <div className="skills-list">
-                {category.skills.map((skill, skillIndex) => (
-                  <div key={skillIndex}>
-                    {skill.subSkills ? (
-                      <div className="skill-category-group" data-reveal data-delay={`${300 + skillIndex*80}ms`}>
-                        <div className="skill-card main-skill">
-                          <div className="skill-icon">{skill.icon}</div>
-                          <div className="skill-info">
-                            <h4 className="skill-name">{skill.name}</h4>
-                            <p className="skill-description">{skill.description}</p>
-                          </div>
-                        </div>
-                        <div className="sub-skills-list">
-                          {skill.subSkills.map((subSkill, subIndex) => (
-                            <div key={subIndex} className="skill-card sub-skill" data-reveal data-delay={`${350 + skillIndex*80 + subIndex*50}ms`}>
-                              <div className="skill-icon">{subSkill.icon}</div>
-                              <div className="skill-info">
-                                <h4 className="skill-name">{subSkill.name}</h4>
-                                <p className="skill-description">{subSkill.description}</p>
-                              </div>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    ) : (
-                      <div className="skill-card" data-reveal data-delay={`${300 + skillIndex*80}ms`}>
-                        <div className="skill-icon">{skill.icon}</div>
-                        <div className="skill-info">
-                          <h4 className="skill-name">{skill.name}</h4>
-                          <p className="skill-description">{skill.description}</p>
-                        </div>
-                      </div>
-                    )}
+        <p className="section-description" data-reveal data-delay="100ms">{t.description}</p>
+        <div className="skills-container">
+          <div className="skills-layout">
+            <div className="skills-left">
+              <div className="roles-text" data-reveal data-delay="0ms">
+                {roles.map((role, index) => (
+                  <div 
+                    key={index} 
+                    className="role-line"
+                    data-reveal
+                    data-delay={`${index * 150}ms`}
+                  >
+                    {role}
+                    {index === roles.length - 1 && <span className="role-slash">/</span>}
                   </div>
                 ))}
               </div>
+            </div>
+            <div className="skills-right">
+              <h2 className="skills-title-right" data-reveal data-delay="200ms">{t.title}</h2>
+              <div className="skills-columns">
+                {skillCategories.map((category, categoryIndex) => (
+                  <div 
+                    key={categoryIndex} 
+                    className="skill-column"
+                    data-reveal
+                    data-delay={`${300 + categoryIndex * 100}ms`}
+                  >
+                    <h3 className="column-title">{category.title}</h3>
+                    <ul className="skill-list">
+                      {category.skills.map((skill, skillIndex) => {
+                        const icon = getIcon(skill.iconKey);
+                        const iconColor = icon ? icon.color : '#ffffff';
+                        
+                        return (
+                          <li
+                            key={skillIndex}
+                            className="skill-item"
+                            data-reveal
+                            data-delay={`${400 + categoryIndex * 100 + skillIndex * 50}ms`}
+                            style={{ '--skill-color': iconColor }}
+                          >
+                            <span className="skill-item-icon">
+                              {icon ? (
+                                <svg
+                                  className="skill-item-svg"
+                                  role="img"
+                                  viewBox="0 0 24 24"
+                                  fill="currentColor"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <path d={icon.path} />
+                                </svg>
+                              ) : (
+                                <span className="skill-item-fallback">•</span>
+                              )}
+                            </span>
+                            <span className="skill-item-name">{skill.name}</span>
+                          </li>
+                        );
+                      })}
+                    </ul>
             </div>
           ))}
               </div>
@@ -127,4 +220,3 @@ const Skills = () => {
 };
 
 export default Skills;
-

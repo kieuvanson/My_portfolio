@@ -1,15 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './Hero.css';
-import useReveal from '../hooks/useReveal';
-// react-pdf imports
-import { Document, Page, pdfjs } from 'react-pdf';
-
-// Tell react-pdf where to load pdf.worker.js from (uses pdfjs-dist)
-// Use local worker copied to public to avoid CDN/CORS/module fetch issues
-pdfjs.GlobalWorkerOptions.workerSrc = '/pdf.worker.min.mjs';
+import { useLanguage } from '../context/LanguageContext';
 
 const Hero = () => {
-  const containerRef = useReveal();
   const scrollToContact = () => {
     const element = document.getElementById('contact');
     if (element) {
@@ -17,114 +10,92 @@ const Hero = () => {
     }
   };
 
-  const [isCvOpen, setIsCvOpen] = useState(false);
-  const [numPages, setNumPages] = useState(null);
-  const [pageNumber, setPageNumber] = useState(1);
-
-  function onDocumentLoadSuccess({ numPages: nextNumPages }) {
-    setNumPages(nextNumPages);
-    setPageNumber(1);
-  }
-
-  const openCv = (e) => {
-    e.preventDefault();
-    setIsCvOpen(true);
+  const { lang } = useLanguage();
+  const t = lang === 'vi' ? {
+    tag: 'Lập trình Web · Backend Architect',
+    hello: 'Xin chào, tôi là ',
+    name: 'Kiều Vân Sơn',
+    tagline: 'Thiết kế các nền tảng web bền vững, mượt mà và dễ mở rộng.',
+    p1: 'Tôi xây dựng giải pháp web end-to-end nơi trải nghiệm người dùng tinh gọn gặp kiến trúc backend đáng tin cậy. Trọng tâm của tôi là hiệu năng, rõ ràng và tác động đo lường được cho mỗi lần phát hành.',
+    p2: 'Từ prototyping tới tự động hóa triển khai, tôi đồng bộ kỹ thuật với mục tiêu sản phẩm, xây dựng API minh bạch và tối ưu pipeline giao hàng để đội nhóm phát hành tự tin.',
+    cta1: 'Bắt đầu dự án',
+    cta2: 'Xem portfolio'
+  } : {
+    tag: 'Web Developer · Backend Architect',
+    hello: "Hello, I’m ",
+    name: 'Kiều Vân Sơn',
+    tagline: 'Designing resilient web platforms that feel effortless and scale with ambition.',
+    p1: 'I craft end-to-end web solutions where refined user journeys meet dependable backend architecture. My focus is on performance, clarity, and measurable impact for every release.',
+    p2: 'From prototyping to production automation, I align engineering with product goals, build transparent APIs, and keep delivery pipelines smooth so teams can ship with confidence.',
+    cta1: 'Start a project',
+    cta2: 'View portfolio'
   };
-
-  const closeCv = () => {
-    setIsCvOpen(false);
-  };
-
-  const goToPrev = () => setPageNumber((p) => Math.max(1, p - 1));
-  const goToNext = () => setPageNumber((p) => Math.min(numPages || p + 1, p + 1));
 
   return (
-    <section id="hero" className="hero reveal" ref={containerRef}>
+    <section id="hero" className="hero">
       <div className="hero-container">
         <div className="hero-content">
-          <div className="hero-badge" data-reveal data-delay="0ms">
-            <span>Backend Developer</span>
+          <div className="hero-pill">
+            <span className="hero-pill-indicator"></span>
+            <span>{t.tag}</span>
           </div>
-          <h1 className="hero-title" data-reveal data-delay="100ms">
-            Hello, I'm <span className="gradient-text">Kieu Van Son</span>
+          <h1 className="hero-title">
+            {t.hello}<span className="gradient-text">{t.name}</span>
           </h1>
-          <p className="hero-description" data-reveal data-delay="200ms">
-            Passionate about API development, database management, and building stable, secure, and scalable backend systems.
-          </p>
-          <div className="hero-buttons" data-reveal data-delay="300ms">
-            <button className="btn-primary" onClick={scrollToContact}>
-              Contact Me
-            </button>
-            <a href="#projects" className="btn-secondary">
-              View Projects
-            </a>
-            <button type="button" className="btn-cv btn-secondary" onClick={openCv} aria-haspopup="dialog" aria-controls="cv-modal">
-              View CV
-            </button>
-            {/* Removed Download CV per request - only View CV remains */}
+          <p className="hero-tagline">{t.tagline}</p>
+          <div className="hero-description">
+            <p>{t.p1}</p>
+            <p>{t.p2}</p>
           </div>
-          <div className="hero-stats" data-reveal data-delay="400ms">
-            <div className="stat-item">
-              <div className="stat-number">4</div>
-              <div className="stat-label">Years Studying</div>
-            </div>
-            <div className="stat-item">
-              <div className="stat-number">3+</div>
-              <div className="stat-label">Backend Projects</div>
-            </div>
-            <div className="stat-item">
-              <div className="stat-number">100%</div>
-              <div className="stat-label">Tech Passion</div>
-            </div>
+          <div className="hero-actions">
+            <button className="btn-primary" onClick={scrollToContact}>{t.cta1}</button>
+            <a href="#projects" className="btn-secondary">{t.cta2}</a>
           </div>
         </div>
-        <div className="hero-visual" data-reveal data-delay="500ms">
-          <div className="code-block">
-            <div className="code-header">
-              <span className="code-dot red"></span>
-              <span className="code-dot yellow"></span>
-              <span className="code-dot green"></span>
+        <div className="hero-visual">
+          <div className="hero-glow"></div>
+          <div className="hero-panel">
+            <div className="panel-header">
+              <span className="panel-tab">/platform/core.ts</span>
+              <span className="panel-status">deploy · ready</span>
             </div>
-            <div className="code-content">
-              <pre>
-{`const developer = {
-  name: "Kieu Van Son",
-  role: "Backend Developer",
-  education: "Women's Academy Vietnam - Year 4",
-  skills: [
-    "Node.js", "Express.js", "PostgreSQL",
-    "JWT Authentication", "RESTful API",
-    "Git/GitHub", "Docker"
-  ],
-  passion: "Building stable and secure backend systems"
+            <pre className="panel-code">
+              {`export const buildPlatform = (vision) => {
+  const blueprint = designService(vision);
+  const api = createAPI({
+    gateways: ['rest', 'graphql'],
+    resilience: 'circuit-breakers'
+  });
+
+  return orchestrateDelivery({
+    blueprint,
+    api,
+    observability: ['metrics', 'distributed-tracing'],
+    deployment: 'zero-downtime'
+  });
 };`}
-              </pre>
+            </pre>
+          </div>
+          <div className="hero-card hero-card-metrics">
+            <span className="card-label">Impact</span>
+            <div className="card-metric">
+              <span>5x</span>
+              <p>Increase in release cadence after workflow automation.</p>
+            </div>
+          </div>
+          <div className="hero-card hero-card-stack">
+            <span className="card-label">Toolbox</span>
+            <div className="stack-chips">
+              <span className="stack-chip">Node.js</span>
+              <span className="stack-chip">TypeScript</span>
+              <span className="stack-chip">Spring</span>
+              <span className="stack-chip">PostgreSQL</span>
+              <span className="stack-chip">Docker</span>
             </div>
           </div>
         </div>
       </div>
-      {isCvOpen && (
-        <div className="cv-modal" role="dialog" aria-modal="true">
-          <div className="cv-modal-backdrop" onClick={closeCv}></div>
-          <div className="cv-modal-content">
-            <div className="cv-modal-header">
-              <h3>Curriculum Vitae</h3>
-              <button className="cv-close" onClick={closeCv} aria-label="Close CV">✕</button>
-            </div>
-            <div className="cv-controls">
-              <button onClick={goToPrev} disabled={pageNumber <= 1}>Prev</button>
-              <span>Page {pageNumber}{numPages ? ` / ${numPages}` : ''}</span>
-              <button onClick={goToNext} disabled={numPages ? pageNumber >= numPages : false}>Next</button>
-            </div>
-            <div className="cv-document">
-              <Document file="public/cv/Kieu-Van-Son.pdf" onLoadSuccess={onDocumentLoadSuccess}>
-                <Page pageNumber={pageNumber} width={800} />
-              </Document>
-            </div>
-          </div>
-        </div>
-      )}
-      <div className="scroll-indicator" data-reveal data-delay="700ms">
+      <div className="scroll-indicator">
         <div className="mouse">
           <div className="wheel"></div>
         </div>

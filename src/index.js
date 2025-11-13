@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
+import { LanguageProvider } from './context/LanguageContext';
 
 // Console log thông tin khi app khởi động
 console.log('%c🚀 Portfolio Kiều Vân Sơn - Backend Developer', 'color: #667eea; font-size: 16px; font-weight: bold;');
@@ -12,7 +13,9 @@ console.log('%cChúc bạn có trải nghiệm tuyệt vời!', 'color: #888; fo
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <LanguageProvider>
+      <App />
+    </LanguageProvider>
   </React.StrictMode>
 );
 
