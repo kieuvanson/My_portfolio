@@ -26,7 +26,8 @@ export default function useReveal() {
           }
         });
       },
-      { root: null, rootMargin: '0px 0px -10% 0px', threshold: 0.18 }
+      // Trigger a bit earlier so content keeps up with natural wheel scroll
+      { root: null, rootMargin: '0px 0px -5% 0px', threshold: 0.12 }
     );
 
     targets.forEach((t) => observer.observe(t));

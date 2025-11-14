@@ -356,6 +356,15 @@ html {
   filter: drop-shadow(0 0 18px rgba(255, 255, 255, 0.55));
 }
 
+/* Global styles here */
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
 /* Scrollbar styling */
 ::-webkit-scrollbar {
   width: 8px;

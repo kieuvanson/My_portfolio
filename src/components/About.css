@@ -137,10 +137,6 @@
   100% { transform: rotate(360deg); }
 }
 
-.strengths-section:hover::before {
-  animation-duration: 3.5s;
-}
-
 .contact-section {
   position: relative;
 }
