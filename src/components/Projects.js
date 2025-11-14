@@ -47,19 +47,22 @@ const Projects = () => {
   };
   
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const projectCard = entry.target.closest('.project-card');
-            if (projectCard) {
-              projectCard.classList.add('is-visible');
-            }
+    const isMobile = typeof window !== 'undefined' && window.matchMedia('(max-width: 768px)').matches;
+    const observerOpts = isMobile
+      ? { root: null, rootMargin: '0px 0px -25% 0px', threshold: 0.75 }
+      : { root: null, rootMargin: '0px 0px -10% 0px', threshold: 0.55 };
+
+    const observer = new IntersectionObserver((entries, obs) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const projectCard = entry.target.closest('.project-card');
+          if (projectCard) {
+            projectCard.classList.add('is-visible');
           }
-        });
-      },
-      { root: null, rootMargin: '0px 0px -10% 0px', threshold: 0.55 }
-    );
+          obs.unobserve(entry.target);
+        }
+      });
+    }, observerOpts);
 
     const projectCards = document.querySelectorAll('[data-project-card]');
     projectCards.forEach((card) => observer.observe(card));
@@ -90,7 +93,7 @@ const Projects = () => {
         </div>
         <div className="projects-grid">
           {projects.map((project, index) => (
-            <div key={index} className="project-card" data-reveal data-delay={`${100 + index*100}ms`}>
+            <div key={index} className="project-card">
               <div className="project-layout" data-project-card>
                 <div className="project-info-left">
                   <h3 className="project-title">{project.title}</h3>
