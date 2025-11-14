@@ -293,6 +293,22 @@
   perspective: 1200px;
 }
 
+/* Default closed state before it enters viewport */
+.hero-visual .hero-panel,
+.hero-visual .hero-card {
+  transform-origin: bottom center;
+  transform: rotateX(55deg) translateY(60px);
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+/* Open state after IntersectionObserver adds .open */
+.hero-visual.open .hero-panel,
+.hero-visual.open .hero-card {
+  transform: rotateX(0deg) translateY(0);
+  opacity: 1;
+}
+
 .hero-glow {
   position: absolute;
   inset: auto;
@@ -399,14 +415,14 @@
   transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease, z-index 0s linear 0.1s;
 }
 
-.hero-visual:hover .hero-panel,
-.hero-visual:hover .hero-card {
+.hero-visual.open:hover .hero-panel,
+.hero-visual.open:hover .hero-card {
   transform: translateY(26px);
   opacity: 0.9;
 }
 
-.hero-visual:hover .hero-panel:hover,
-.hero-visual:hover .hero-card:hover {
+.hero-visual.open:hover .hero-panel:hover,
+.hero-visual.open:hover .hero-card:hover {
   opacity: 1;
 }
 
@@ -474,6 +490,8 @@
   left: 50%;
   transform: translateX(-50%);
   animation: bounce 2s infinite;
+  z-index: 0;
+  pointer-events: none;
 }
 
 .mouse {
@@ -632,6 +650,10 @@
   }
 
   .hero-visual {
+    display: none;
+  }
+
+  .scroll-indicator {
     display: none;
   }
 }

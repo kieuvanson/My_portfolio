@@ -8,11 +8,29 @@ const Navbar = () => {
   const { lang, toggleLanguage } = useLanguage();
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
+    let lastY = window.scrollY || 0;
+    let ticking = false;
+
+    const update = () => {
+      ticking = false;
+      const shouldBeScrolled = lastY > 50;
+      // Only set state when value actually changes to avoid extra renders
+      setScrolled((prev) => (prev !== shouldBeScrolled ? shouldBeScrolled : prev));
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+
+    const onScroll = () => {
+      lastY = window.scrollY || 0;
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(update);
+      }
+    };
+
+    // set initial state
+    onScroll();
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
   const labels = lang === 'vi' ? {

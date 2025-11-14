@@ -13,7 +13,7 @@ const Skills = () => {
     categories: {
       languages: 'Ngôn ngữ lập trình',
       frameworks: 'Frameworks & Thư viện',
-      tools: 'Công cụ'
+      tools: 'Tool & Cơ sở dữ liệu'
     }
   } : {
     title: 'Skills',
@@ -21,7 +21,7 @@ const Skills = () => {
     categories: {
       languages: 'Programming Languages',
       frameworks: 'Frameworks & Libraries',
-      tools: 'Tools'
+      tools: 'Tool & Database'
     }
   };
   

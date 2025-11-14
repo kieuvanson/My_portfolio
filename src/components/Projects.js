@@ -7,10 +7,17 @@ const Projects = () => {
   const containerRef = useReveal();
   const { lang } = useLanguage();
   const tt = lang === 'vi' ? {
-    sectionTitle: 'Dự án tiêu biểu',
+    sectionTitle: 'Dự án của tôi',
     link: 'Xem mã nguồn / Nền tảng',
+    footerText: 'Nếu bạn muốn xem toàn bộ dự án, hãy ghé trang GitHub của tôi.',
+    footerCta: 'Tới GitHub cá nhân',
     category_backend: 'Backend E-Commerce',
-    desc1: 'Dự án backend hoàn chỉnh cho cửa hàng trà sữa NuiTeaCT. Phát triển hệ thống API đầy đủ: đăng nhập/đăng ký, quản lý sản phẩm, đơn hàng, lịch sử cập nhật. Thiết kế cơ sở dữ liệu PostgreSQL, bảo mật JWT, tuân thủ RESTful API.',
+    desc1: 'Backend cho NuiTeaCT: hệ thống API chuẩn REST, bảo mật JWT, thiết kế CSDL tối ưu.',
+    labels: {
+      languages: 'Ngôn ngữ',
+      frameworks: 'Framework',
+      database: 'Cơ sở dữ liệu'
+    },
     hl: [
       'Xây dựng chuẩn RESTful API có khả năng mở rộng',
       'Tự động ghi lịch sử thay đổi sản phẩm (auditing)',
@@ -19,10 +26,17 @@ const Projects = () => {
       'Xử lý lỗi và logging chi tiết'
     ]
   } : {
-    sectionTitle: 'My best projects',
+    sectionTitle: 'My project',
     link: 'Link to the platform',
+    footerText: 'Want to see all of my projects? Visit my GitHub profile.',
+    footerCta: 'Go to my GitHub',
     category_backend: 'E-Commerce Backend',
-    desc1: 'Complete backend project for NuiTeaCT bubble tea shop. Developed full API system for: user login/registration, product management, orders, update history. Designed PostgreSQL database, secured with JWT, implemented standard RESTful API.',
+    desc1: 'NuiTeaCT backend: clean REST APIs, JWT security, optimized database design.',
+    labels: {
+      languages: 'Languages',
+      frameworks: 'Frameworks',
+      database: 'Database'
+    },
     hl: [
       'Created scalable RESTful API standards',
       'Automatic product change history logging (auditing system)',
@@ -44,7 +58,7 @@ const Projects = () => {
           }
         });
       },
-      { root: null, rootMargin: '0px 0px -10% 0px', threshold: 0.1 }
+      { root: null, rootMargin: '0px 0px -10% 0px', threshold: 0.55 }
     );
 
     const projectCards = document.querySelectorAll('[data-project-card]');
@@ -55,9 +69,12 @@ const Projects = () => {
 
   const projects = [
     {
-      title: 'NuiTeaCT – Backend API',
+      title: 'Website bán trà sữa online - NuiTea',
       description: tt.desc1,
-      tech: ['Node.js', 'Express.js', 'PostgreSQL', 'JWT', 'RESTful API'],
+      tech: ['React', 'ASP.NET Core', 'PostgreSQL', 'JWT', 'RESTful API'],
+      languages: ['JavaScript', 'C#'],
+      frameworks: ['React', '.NET'],
+      database: ['PostgreSQL'],
       category: tt.category_backend,
       highlights: tt.hl,
       github: 'https://github.com/kieuvanson/NuiTeaCT',
@@ -76,12 +93,42 @@ const Projects = () => {
             <div key={index} className="project-card" data-reveal data-delay={`${100 + index*100}ms`}>
               <div className="project-layout" data-project-card>
                 <div className="project-info-left">
-                  <div className="project-number">{String(index + 1).padStart(2, '0')}</div>
                   <h3 className="project-title">{project.title}</h3>
                   <div className="project-meta">
                 <span className="project-category">{project.category}</span>
               </div>
               <p className="project-description">{project.description}</p>
+                  <div className="stack-lines">
+                    <div className="stack-line"><span className="stack-label">{tt.labels.languages}:</span> <span className="stack-values">{project.languages.join(', ')}</span></div>
+                    <div className="stack-line"><span className="stack-label">{tt.labels.frameworks}:</span> <span className="stack-values">{project.frameworks.join(', ')}</span></div>
+                    <div className="stack-line"><span className="stack-label">{tt.labels.database}:</span> <span className="stack-values">{project.database.join(', ')}</span></div>
+                  </div>
+                  <div className="stack-groups">
+                    <div className="stack-group">
+                      <span className="stack-group-label">{tt.labels.languages}</span>
+                      <div className="stack-chips">
+                        {project.languages.map((item, i) => (
+                          <span key={`lang-${i}`} className="chip chip-lang">{item}</span>
+                        ))}
+                      </div>
+                    </div>
+                    <div className="stack-group">
+                      <span className="stack-group-label">{tt.labels.frameworks}</span>
+                      <div className="stack-chips">
+                        {project.frameworks.map((item, i) => (
+                          <span key={`fw-${i}`} className="chip chip-fw">{item}</span>
+                        ))}
+                      </div>
+                    </div>
+                    <div className="stack-group">
+                      <span className="stack-group-label">{tt.labels.database}</span>
+                      <div className="stack-chips">
+                        {project.database.map((item, i) => (
+                          <span key={`db-${i}`} className="chip chip-db">{item}</span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
                   {project.github && (
                 <a
                       href={project.github}
@@ -143,6 +190,10 @@ const Projects = () => {
               </div>
             </div>
           ))}
+        </div>
+        <div className="projects-footer" data-reveal data-delay="200ms">
+          <p className="projects-footer-text">{tt.footerText}</p>
+          <a className="projects-footer-link" href="https://github.com/kieuvanson" target="_blank" rel="noopener noreferrer">{tt.footerCta}</a>
         </div>
       </div>
     </section>

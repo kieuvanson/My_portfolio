@@ -504,6 +504,70 @@
   margin-top: 1rem;
 }
 
+/* Tech stacks as labeled lines (desktop) */
+
+/* Hide old labeled lines by default (we use grouped chips instead) */
+.stack-lines { display: none; }
+
+.stack-line {
+  color: #cfcfcf;
+  font-size: 0.95rem;
+}
+
+.stack-label {
+  color: #9aa0a6;
+  font-weight: 500;
+  margin-right: 0.35rem;
+}
+
+.stack-values {
+  color: #e8eaed;
+}
+
+/* Tech chips (mobile-preferred) */
+.stack-groups {
+  display: grid;
+  gap: 0.75rem;
+  margin-top: 0.9rem;
+}
+
+.stack-group {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.stack-group-label {
+  font-size: 0.8rem;
+  color: #9aa0a6;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 999px;
+  padding: 0.2rem 0.55rem;
+}
+
+.stack-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.chip {
+  padding: 0.35rem 0.6rem;
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 999px;
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.9);
+  background: rgba(255,255,255,0.06);
+  backdrop-filter: blur(6px);
+}
+
+.chip-lang { border-color: rgba(102, 126, 234, 0.35); }
+.chip-fw { border-color: rgba(255, 166, 191, 0.35); }
+.chip-db { border-color: rgba(136, 173, 255, 0.35); }
+
 .project-link {
   color: #ffffff;
   text-decoration: none;
@@ -526,6 +590,36 @@
 
 .project-link:hover::after {
   width: 100%;
+}
+
+/* Footer under projects */
+.projects-footer {
+  margin-top: 5rem;
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.projects-footer-text {
+  color: #9aa0a6;
+}
+
+.projects-footer-link {
+  color: #ffffff;
+  border: 1px solid rgba(255,255,255,0.2);
+  padding: 0.5rem 0.9rem;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.projects-footer-link:hover {
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(255,255,255,0.35);
 }
 
 @media (max-width: 968px) {
@@ -581,4 +675,13 @@
     grid-template-columns: 1fr;
     gap: 0.5rem;
   }
+
+  /* Mobile tweaks */
+  .project-description {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+  /* Stack spacing tweaks on small screens */
+  .stack-group-label { font-size: 0.75rem; }
+  .chip { font-size: 0.78rem; padding: 0.3rem 0.55rem; }
 }

@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import './Hero.css';
 import { useLanguage } from '../context/LanguageContext';
 
 const Hero = () => {
+  const visualRef = useRef(null);
   const scrollToContact = () => {
     const element = document.getElementById('contact');
     if (element) {
@@ -12,24 +13,37 @@ const Hero = () => {
 
   const { lang } = useLanguage();
   const t = lang === 'vi' ? {
-    tag: 'Lập trình Web · Backend Architect',
+    tag: 'Full‑stack hướng đám mây',
     hello: 'Xin chào, tôi là ',
     name: 'Kiều Vân Sơn',
     tagline: 'Thiết kế các nền tảng web bền vững, mượt mà và dễ mở rộng.',
     p1: 'Tôi xây dựng giải pháp web end-to-end nơi trải nghiệm người dùng tinh gọn gặp kiến trúc backend đáng tin cậy. Trọng tâm của tôi là hiệu năng, rõ ràng và tác động đo lường được cho mỗi lần phát hành.',
     p2: 'Từ prototyping tới tự động hóa triển khai, tôi đồng bộ kỹ thuật với mục tiêu sản phẩm, xây dựng API minh bạch và tối ưu pipeline giao hàng để đội nhóm phát hành tự tin.',
-    cta1: 'Bắt đầu dự án',
-    cta2: 'Xem portfolio'
+    cta1: 'Liên hệ',
+    cta2: 'Dự án'
   } : {
-    tag: 'Web Developer · Backend Architect',
+    tag: 'Web Developer · Cloud‑Ready Full‑stack',
     hello: "Hello, I’m ",
     name: 'Kiều Vân Sơn',
     tagline: 'Designing resilient web platforms that feel effortless and scale with ambition.',
     p1: 'I craft end-to-end web solutions where refined user journeys meet dependable backend architecture. My focus is on performance, clarity, and measurable impact for every release.',
     p2: 'From prototyping to production automation, I align engineering with product goals, build transparent APIs, and keep delivery pipelines smooth so teams can ship with confidence.',
-    cta1: 'Start a project',
-    cta2: 'View portfolio'
+    cta1: 'Contact',
+    cta2: 'Projects'
   };
+
+  useEffect(() => {
+    const el = visualRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        el.classList.add('open');
+        observer.disconnect();
+      }
+    }, { threshold: 0.2 });
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <section id="hero" className="hero">
@@ -52,7 +66,7 @@ const Hero = () => {
             <a href="#projects" className="btn-secondary">{t.cta2}</a>
           </div>
         </div>
-        <div className="hero-visual">
+        <div className="hero-visual" ref={visualRef}>
           <div className="hero-glow"></div>
           <div className="hero-panel">
             <div className="panel-header">

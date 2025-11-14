@@ -13,21 +13,43 @@ const About = () => {
     intro1: 'Tôi là một lập trình viên Web đam mê tạo ra trải nghiệm web đẹp, hữu dụng và thân thiện.',
     intro2: 'Với kinh nghiệm cả frontend và backend, tôi hiện thực hóa ý tưởng bằng mã sạch, giao diện trực quan và hệ thống vững chắc. Tôi chuyên xây dựng ứng dụng web responsive vừa đẹp vừa hoạt động mượt trên mọi thiết bị.',
     intro3: 'Tôi thích biến vấn đề phức tạp thành giải pháp đơn giản, tinh gọn. Từ UI mượt mà, API mở rộng tốt đến tối ưu hiệu năng, tôi luôn chú trọng chi tiết và chất lượng.',
-    contact: 'Liên hệ',
-    phone: 'Điện thoại',
-    email: 'Email',
-    github: 'GitHub',
-    facebook: 'Facebook'
+    strengthsTitleBackend: 'Back‑end',
+    strengthsBackend: [
+      'RESTful API sạch, dễ mở rộng',
+      'Thiết kế CSDL tối ưu',
+      'Bảo mật JWT & middleware',
+      'CI/CD, zero‑downtime',
+      'Giám sát & logging rõ ràng'
+    ],
+    strengthsTitleFrontend: 'Front‑end',
+    strengthsFrontend: [
+      'UI/UX gọn, dễ dùng',
+      'Responsive đa thiết bị',
+      'Hiệu năng tốt, tối ưu tải',
+      'Component hoá rõ ràng',
+      'Clean code & accessibility'
+    ]
   } : {
     title: 'About Me',
     intro1: 'I am a Web Developer passionate about crafting beautiful, functional, and user-friendly web experiences.',
     intro2: 'With expertise spanning both frontend and backend development, I bring ideas to life through clean code, intuitive interfaces, and robust systems. I specialize in building responsive web applications that not only look great but also perform flawlessly across all devices.',
     intro3: "I love turning complex problems into simple, elegant solutions. Whether it's creating seamless user interfaces, designing scalable APIs, or optimizing performance, I approach every project with attention to detail and a commitment to excellence.",
-    contact: 'Contact',
-    phone: 'Phone',
-    email: 'Email',
-    github: 'GitHub',
-    facebook: 'Facebook'
+    strengthsTitleBackend: 'Back‑end',
+    strengthsBackend: [
+      'Clean, scalable RESTful APIs',
+      'Optimized database design',
+      'JWT security & middleware',
+      'CI/CD, zero‑downtime',
+      'Clear observability & logging'
+    ],
+    strengthsTitleFrontend: 'Front‑end',
+    strengthsFrontend: [
+      'Clean, usable UI/UX',
+      'Responsive across devices',
+      'Good performance & loading',
+      'Componentized architecture',
+      'Clean code & accessibility'
+    ]
   };
 
   const getIcon = (iconKey) => {
@@ -102,47 +124,27 @@ const About = () => {
               </div>
 
           <div className="about-right" data-reveal data-delay="200ms">
-            <div className="contact-section">
-              <div className="section-label">{t.contact}</div>
-              <div className="contact-list">
-                {contactInfo.map((contact, index) => {
-                  const icon = getIcon(contact.iconKey);
-                  const iconColor = '#f5f5f5';
-
-                  return (
-                    <a
-                      key={index}
-                      href={contact.href}
-                      target={contact.type === 'email' || contact.type === 'phone' ? '_self' : '_blank'}
-                      rel={contact.type === 'email' || contact.type === 'phone' ? '' : 'noopener noreferrer'}
-                      className="contact-item"
-                      data-reveal
-                      data-delay={`${300 + index * 100}ms`}
-                      style={{ '--icon-color': iconColor }}
-                  >
-                      <div className="contact-icon">
-                        {icon ? (
-                          <svg
-                            className="contact-svg"
-                            role="img"
-                            viewBox="0 0 24 24"
-                            fill="currentColor"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path d={icon.path} />
-                          </svg>
-                ) : (
-                          <span className="contact-fallback">•</span>
-                )}
-                      </div>
-                      <div className="contact-info">
-                        <span className="contact-label">{contact.label}</span>
-                        <span className="contact-value">{contact.value}</span>
-                      </div>
-                    </a>
-                  );
-                })}
-              </div>
+            <div className="strengths-section">
+              <div className="section-label">{t.strengthsTitleBackend}</div>
+              <ul className="strengths-list">
+                {t.strengthsBackend.map((item, i) => (
+                  <li key={`be-${i}`} className="strength-item" data-reveal data-delay={`${250 + i * 100}ms`}>
+                    <span className="strength-dot">✓</span>
+                    <span className="strength-text">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="strengths-section">
+              <div className="section-label">{t.strengthsTitleFrontend}</div>
+              <ul className="strengths-list">
+                {t.strengthsFrontend.map((item, i) => (
+                  <li key={`fe-${i}`} className="strength-item" data-reveal data-delay={`${250 + i * 100}ms`}>
+                    <span className="strength-dot">✓</span>
+                    <span className="strength-text">{item}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         </div>
