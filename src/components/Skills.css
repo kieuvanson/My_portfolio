@@ -262,6 +262,30 @@
   .skills-columns {
     grid-template-columns: 1fr;
     gap: 3rem;
+    justify-items: center;
+  }
+
+  .skills-right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .skills-title-right {
+    text-align: center;
+  }
+
+  .skill-column {
+    width: 100%;
+    max-width: 520px;
+  }
+
+  .column-title {
+    text-align: center;
+  }
+
+  .skill-list {
+    align-items: center;
   }
 }
 
