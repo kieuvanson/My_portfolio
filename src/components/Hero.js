@@ -24,7 +24,7 @@ const Hero = () => {
   } : {
     tag: 'Web Developer · Cloud‑Ready Full‑stack',
     hello: "Hello, I’m ",
-    name: 'Kiều Vân Sơn',
+    name: 'Kieu Van Son',
     tagline: 'Designing resilient web platforms that feel effortless and scale with ambition.',
     p1: 'I craft end-to-end web solutions where refined user journeys meet dependable backend architecture. My focus is on performance, clarity, and measurable impact for every release.',
     p2: 'From prototyping to production automation, I align engineering with product goals, build transparent APIs, and keep delivery pipelines smooth so teams can ship with confidence.',
